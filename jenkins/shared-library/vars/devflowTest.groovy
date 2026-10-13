@@ -4,7 +4,11 @@ def call() {
     }
 
     stage('Install Dependencies') {
-        sh '.venv/bin/python -m pip install -r requirements.txt'
+        sh '.venv/bin/python -m pip install -r requirements-dev.txt'
+    }
+
+    stage('Lint') {
+        sh '.venv/bin/ruff check app tests'
     }
 
     stage('Run Tests') {
