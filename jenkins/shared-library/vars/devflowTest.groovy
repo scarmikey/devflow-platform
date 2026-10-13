@@ -1,9 +1,13 @@
 def call() {
+    stage('Create Python Virtual Environment') {
+        sh 'python3 -m venv .venv'
+    }
+
     stage('Install Dependencies') {
-        sh 'python3 -m pip install -r requirements.txt'
+        sh '.venv/bin/python -m pip install -r requirements.txt'
     }
 
     stage('Run Tests') {
-        sh 'python3 -m pytest -q'
+        sh '.venv/bin/python -m pytest -q'
     }
 }
