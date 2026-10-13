@@ -1,0 +1,31 @@
+# Git metadata
+.git
+.github
+
+# Python environments and caches
+.venv
+**/__pycache__
+.pytest_cache
+*.py[cod]
+.coverage
+htmlcov
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets
+
+# Infrastructure state
+.terraform
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Editor and operating system files
+.vscode
+.idea
+.DS_Store
+Thumbs.db
