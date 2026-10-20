@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devflow-api
+  namespace: devflow
+spec:
+  template:
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/scarmikey/devflow-api@sha256:342d9c8a3e928d0c5ab18ea0e6d128f897025183ea9785255b0d9ac9a948bc39
+          imagePullPolicy: Always
