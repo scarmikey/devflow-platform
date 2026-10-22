@@ -25,3 +25,6 @@ crash.log
 .idea/
 .DS_Store
 Thumbs.db
+
+# Local Terraform variable files
+*.tfvars

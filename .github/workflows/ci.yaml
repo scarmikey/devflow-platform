@@ -9,6 +9,7 @@ on:
 permissions:
   contents: read
   packages: write
+  id-token: write
 
 jobs:
   test:
@@ -47,6 +48,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Configure AWS credentials using OIDC
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::708616657241:role/GitHubActions-DevFlow-ECR
+          aws-region: us-east-1
+
+      - name: Log in to Amazon ECR
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: aws-actions/amazon-ecr-login@v2
+
       - name: Build and publish Docker image
         uses: docker/build-push-action@v6
         with:
@@ -55,3 +67,5 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/devflow-api:latest
             ghcr.io/${{ github.repository_owner }}/devflow-api:sha-${{ github.sha }}
+            708616657241.dkr.ecr.us-east-1.amazonaws.com/devflow-api:latest
+            708616657241.dkr.ecr.us-east-1.amazonaws.com/devflow-api:sha-${{ github.sha }}

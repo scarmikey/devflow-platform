@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devflow
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/scarmikey/devflow-platform.git
+    targetRevision: main
+    path: kubernetes/devflow/overlays/ghcr
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: devflow
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
