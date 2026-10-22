@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: devflow-api
+  namespace: devflow
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: devflow.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: devflow-api
+                port:
+                  number: 8000
