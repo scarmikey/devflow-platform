@@ -8,5 +8,5 @@ spec:
     spec:
       containers:
         - name: api
-          image: ghcr.io/scarmikey/devflow-api@sha256:342d9c8a3e928d0c5ab18ea0e6d128f897025183ea9785255b0d9ac9a948bc39
+          image: ghcr.io/scarmikey/devflow-api@sha256:e88865fa5d8dbef71fd744aa7849cd55c009d922795990ee05f61c4395c33054
           imagePullPolicy: Always
